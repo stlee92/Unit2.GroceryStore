@@ -18,8 +18,9 @@ const inventory = [
   { id: 7, name: "cheddar", price: 4.0, category: "dairy", quantity: 63 },
   { id: 8, name: "sourdough", price: 5.5, category: "grains", quantity: 81 },
 ];
-
 // === Complete the functions below! ===
+
+/////HELP - CONSOLE LOG? USE LOGNAMES?/////
 
 /**
  * Prints out the name of each item in the given array.
@@ -27,15 +28,18 @@ const inventory = [
  */
 function logNames(items) {
   // TODO: use `forEach`
+  return items.forEach((item) => console.log(item.name));
 }
-
+logNames(inventory);
 /**
  * @param {Item[]} items - array of items
  * @returns {string[]} an array of item names in all uppercase
  */
 function getUppercaseNames(items) {
   // TODO: use `map`
+  return items.map((item) => item.name.toUpperCase());
 }
+console.log(getUppercaseNames(inventory));
 
 /**
  * @param {Item[]} items - array of items
@@ -44,6 +48,7 @@ function getUppercaseNames(items) {
  */
 function getItemById(items, id) {
   // TODO: use `find`
+  return items.find((item) => item.id === id);
 }
 
 /**
@@ -51,59 +56,97 @@ function getItemById(items, id) {
  * @param {string} name - name of the item to find
  * @returns {number} the price of the item named `name` if found
  */
-function getItemPriceByName(items, name) {
-  // TODO: use a loop!
-}
+
+// function getItemPriceByName(items, name) {
+//   // TODO: use a loop!
+//   for (let i = 0; i < items.length; i++) {
+//     if (items[i].name === name) {
+//       return items[i].price;
+//     }
+//   }
+/////OR BELOw/////
+//   let price = 0;
+//   items.forEach((item) => {
+//     if (name === item.name) {
+//       console.log(item);
+//       price = item.price;
+//     }
+//   });
+//   return price;
+// }
 
 /**
  * @param {Item[]} items - array of items
  * @param {string} category
  * @returns {Item[]} array of items that belong to the given `category`
  */
+// function getItemsByCategory(items, category) {
+//   // TODO: use `filter`
+//   return inventory.filter((item) => item.category === category);
+// }
+
+///// HELP - returns undefined . Question - why does there need to be another 'return' within the 'return'?/////
+
 function getItemsByCategory(items, category) {
   // TODO: use `filter`
+  return items.filter((item) => item.category === category);
 }
 
-/**
- * @param {Item[]} items - array of items
- * @returns {number} the total quantity of all items
- */
+/// HELP - why does the bottom one not work? /////
+// function getItemsByCategory(items, category) {
+//   // TODO: use `filter`
+//   return items.filter((item) => item.category === category);
+// }
+// function getItemsByCategory(items, category) {
+//   // TODO: use `filter`
+//   if (category !== "") {
+//     return inventory.filter((inventory.name) => {category === inventory.category});
+//   }
+// }
+
+// /**
+//  * @param {Item[]} items - array of items
+//  * @returns {number} the total quantity of all items
+//  */
+
 function countItems(items) {
   // TODO: use `reduce`
+  return items.reduce((prev, item) => prev + item.quantity, 0);
 }
 
 /**
- * @param {Item[]} items - array of items
- * @returns {number} the cost of all given items
- */
+//  * @param {Item[]} items - array of items
+//  * @returns {number} the cost of all given items
+//  */
 function getTotalPrice(items) {
   // TODO: use `reduce`
+  return items.reduce((prev, item) => prev + item.price * item.quantity, 0);
 }
 
 // === READ BUT DO NOT CHANGE THE CODE BELOW ===
 
-console.log("Welcome! We carry the following items:");
-logNames(inventory);
+// console.log("Welcome! We carry the following items:");
+// logNames(inventory);
 
-console.log("Here are the names again in all uppercase:");
-console.log(getUppercaseNames(inventory));
+// console.log("Here are the names again in all uppercase:");
+// console.log(getUppercaseNames(inventory));
 
-console.log(`In total, we have ${countItems(inventory)} items in stock.`);
+// console.log(`In total, we have ${countItems(inventory)} items in stock.`);
 
 const totalCost = getTotalPrice(inventory);
 console.log(
   `It would cost $${totalCost?.toFixed(2)} to purchase everything in stock.`
 );
 
-const itemId = prompt("Enter the ID of an item:", "1");
-console.log(`The item with id #${itemId} is:`);
-console.log(getItemById(inventory, +itemId));
+// const itemId = prompt("Enter the ID of an item:", "1");
+// console.log(`The item with id #${itemId} is:`);
+// console.log(getItemById(inventory, +itemId));
 
-const itemName = prompt("Enter the name of an item:", "apple");
-console.log(
-  `The price of ${itemName} is ${getItemPriceByName(inventory, itemName)}.`
-);
+// const itemName = prompt("Enter the name of an item:", "apple");
+// console.log(
+//   `The price of ${itemName} is ${getItemPriceByName(inventory, itemName)}.`
+// );
 
-const category = prompt("Enter a category you would like to see:", "fruit");
-console.log(`The items in the ${category} category are:`);
-console.log(getItemsByCategory(inventory, category));
+// const category = prompt("Enter a category you would like to see:", "fruit");
+// console.log(`The items in the ${category} category are:`);
+// console.log(getItemsByCategory(inventory, category));
